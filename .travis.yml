@@ -33,7 +33,7 @@ before_script:
   - npm install -g karma
 
 script:
-  - ng test
+  - npm run e2e
 
 notification:
   email:
