@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
+/**
+ * Variable routes
+ */
+var user = require('./user');
 
-/* GET api listing. */
-router.get('/', (req, res) => {
-  res.send('api works');
-});
+/**
+ * Routes definition
+ */
+router.get('/user/all', user.getAllUsers);
 
 module.exports = router;
