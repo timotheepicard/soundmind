@@ -11,4 +11,9 @@ describe('soundmind App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to app!!');
   });
+
+  it('should display login form', () => {
+    page.navigateToLogin();
+    expect(page.getValueInputLoginName()).toEqual('');
+  });
 });
