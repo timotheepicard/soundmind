@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
-var passport = require('passport');
-var bcrypt = require('bcryptjs');
-var session = require('express-session');
-var flash = require('connect-flash');
+const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash');
+
+const tokenSecret = "SOUNDMIND_TOKEN_SECRET";
 
 const port = process.env.PORT || '3000';
 const app = express();
@@ -20,11 +21,23 @@ var corsOptions = {
   credentials: true
 };
 
+app.set('views', __dirname + '/server/views');
+app.set('view engine', 'ejs');
+app.set('jwtTokenSecret', tokenSecret);
+
+require('./server/middleware/passport')(passport, app);
+
+app.use(flash());
 app.use(cors(corsOptions));
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+  secret: 'soundmind_session_secret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // passport
 app.use(passport.initialize());

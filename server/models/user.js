@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('brcryptjs');
+const bcrypt = require('bcryptjs');
 const modelHelpers = require ('./modelHelpers');
 
 const userSchema = new mongoose.Schema();
@@ -17,7 +17,7 @@ userSchema.methods.toDTO = () => {
 
   const dto = {
     id: obj.id.toString(),
-    //_id: obj.id.toString(),
+    _id: obj.id.toString(),
     name: obj.name,
     firstname: obj.firstname,
     email: obj.email
@@ -27,10 +27,10 @@ userSchema.methods.toDTO = () => {
 }
 
 userSchema.methods.generateHash = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSalt(8), null);
+  return bcrypt.hashSync(password,8);
 }
 
-userSchema.methods.validPassword = (password) => {
+userSchema.methods.validPassword = function(password){ // si déclaration ES6 'this' est undefined
   return bcrypt.compareSync(password, this.password);
 }
 

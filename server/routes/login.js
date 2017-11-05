@@ -1,0 +1,38 @@
+const passport = require ('passport');
+const authentication = require ('../middleware/authentication');
+exports.showLoginPage = (req,res) => {
+  res.render('login.ejs', {message: req.flash('loginMessage')});
+  req.session.destroy();
+}
+
+exports.passportLogin = passport.authenticate('local-login', {
+  successRedirect: '/api/token',
+  failureRedirect: '/api/login',
+  failureFlash: true
+});
+
+exports.getToken = (req,res) => {
+  if(req.user){
+    res.send(req.user);
+  } else {
+    let token = authentication.retrieveToken(req);
+    if(token){
+      res.status(401).send({
+        errorCode: 'ACCES_DENIED',
+        message: 'User associated with token was not found'
+      });
+    } else {
+      res.status(401).send({
+        errorCord: 'ACCES_DENIED',
+        message: 'Access token is missing'
+      });
+    }
+  }
+  req.session.destroy();
+}
+
+exports.logout = (req,res) => {
+  req.session.destroy();
+  req.logout();
+  res.status(200).send();
+}

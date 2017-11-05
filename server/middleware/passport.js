@@ -37,7 +37,8 @@ module.exports = (passport, app) => {
           }
 
           let expires = moment().add(1, 'days').valueOf();
-          user.token = jwt.encode({
+          user.token = jwt.encode(
+            {
               iss: user.id,
               exp: expires
             },
@@ -74,16 +75,15 @@ module.exports = (passport, app) => {
             if(err){
               return done(err);
             }
-
             if(user){
-              return done("The user with email " + email + "already exists and could not be created");
+              return done("The user with email " + email + " already exists and could not be created");
             }
             else {
-              var newUser = new User();
+              let newUser = new User();
               newUser.name = req.body.name;
               newUser.firstname = req.body.firstname;
               newUser.email = email;
-              newUser.password = newuser.generateHash(password);
+              newUser.password = newUser.generateHash(password);
 
               newUser.save(function(err){
                 if(err){

@@ -1,5 +1,5 @@
-export.toJSON = () => {
-  var obj = this.toJSON();
+exports.toJSON = function() {
+  let obj = this.toObject();
 
   obj.id = obj._id;
   delete obj._id;
