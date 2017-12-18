@@ -1,11 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-/*body{
-  background: url(assets/images/background3.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+/**
+* Colour References
+#02547D blue blue
+#0284A8 blue
+#02BEC4 blue green
+#A9E8DC green
+#E1F7E7 green light
+*/
+
+/**
+* General
+*/
+
+
+/**
+* Login Component
+*/
+div.login-full {
+  height: 100vh;
+
 }
+
+h3.login-title{
+  margin-bottom: 20px;
+}
+
+div#formLogin{
+  max-width:600px;
+  margin:30px auto;
+  padding:20px 25px;
+}
+
+#formLogin ::-webkit-input-placeholder,
+#formLogin ::-moz-placeholder,
+#formLogin :-ms-input-placeholder,
+#formLogin :-moz-placeholder{
+  color: #666666;
+}
+
+#formLogin button {
+  margin-top: 30px;
+}
+
+#formLogin form input,
+#formLogin form textarea{
+  box-shadow:none !important;
+  padding:6px 5px;
+  color: #666666;
+  border:0;
+  border-bottom:1px solid rgba(102,102,102,0.5);
+  background:transparent;
+  border-radius:0px;
+}
+
+.login-center{
+  margin: 0 auto;
+}
+
+.button-blue {
+  color: #ffffff;
+  background-color: #02547D;
+}
+
+.button-blue:hover{
+  background-color: #024669;
+}
+
+.button-blue-green{
+  color: #ffffff;
+  background-color: #02BEC4;
+}
+
+a.button-blue-green:hover{
+  text-decoration: none;
+}
+
+/**
+* Navbar Component
 */
